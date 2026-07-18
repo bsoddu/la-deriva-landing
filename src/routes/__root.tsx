@@ -77,21 +77,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "La Deriva — Ristorante di mare ad Arezzo" },
+      {
+        name: "description",
+        content:
+          "Cucina di mare essenziale e stagionale nel cuore di Arezzo. Nuova apertura in Piaggia San Bartolomeo. Prenota allo 0575 802841.",
+      },
+      { property: "og:title", content: "La Deriva — Ristorante di mare ad Arezzo" },
+      {
+        property: "og:description",
+        content:
+          "Il sapore autentico del mare ormeggia ad Arezzo. Cucina essenziale, cantina di vini naturali.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@300;400;500&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      {
+        rel: "icon",
+        href: "/__l5e/assets-v1/8411f109-4d7e-4d59-acd6-3847f67c3d7f/logo-la-deriva.jpg",
+        type: "image/jpeg",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -99,6 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
+
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
