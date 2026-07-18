@@ -1,15 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "@/assets/logo-la-deriva.jpg.asset.json";
-import interno from "@/assets/interno-tavolo.jpg.asset.json";
-import salaVolta from "@/assets/sala-volta.jpg.asset.json";
-import polpo from "@/assets/polpo.jpg.asset.json";
-import gamberi from "@/assets/gamberi.jpg.asset.json";
-import sashimi from "@/assets/sashimi.jpg.asset.json";
+import { useEffect, useState } from "react";
+
+const logo = { url: "/images/logo-la-deriva.jpg" };
+const interno = { url: "/images/interno-tavolo.jpg" };
+const salaVolta = { url: "/images/sala-volta.jpg" };
+const polpo = { url: "/images/polpo.jpg" };
+const gamberi = { url: "/images/gamberi.jpg" };
+const sashimi = { url: "/images/sashimi.jpg" };
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { property: "og:image", content: interno.url },
       { property: "twitter:image", content: interno.url },
     ],
@@ -123,7 +126,7 @@ function Atmosfera() {
           <div className="md:col-span-7 md:pr-8">
             <img
               src={salaVolta.url}
-              alt="Sala a volta in mattoni di La Deriva"
+              alt="Terrazza esterna in pietra di La Deriva"
               className="w-full aspect-[4/5] object-cover shadow-2xl shadow-black/40"
             />
           </div>
@@ -136,7 +139,7 @@ function Atmosfera() {
               <em className="text-[color:var(--stone-warm)]">tra i sapori più puri</em> del mare.
             </h2>
             <p className="mt-8 text-muted-foreground leading-relaxed">
-              Un vicolo di pietra, una sala a volta in mattoni, la luce bassa
+              Un vicolo di pietra, una terrazza raccolta, la luce bassa
               della sera. La Deriva è una sosta scelta, non un passaggio.
             </p>
             <div className="mt-14 md:-ml-24 md:w-[70%]">
@@ -156,7 +159,7 @@ function Atmosfera() {
 const dishes = [
   { name: "Polpo alla brace", note: "crema di mais, pomodoro confit, basilico", img: polpo.url },
   { name: "Gambero rosso crudo", note: "materia prima del giorno", img: gamberi.url },
-  { name: "Trota marinata", note: "cipollotto, olio al prezzemolo", img: sashimi.url },
+  { name: "Crudo di pesce", note: "selezione del giorno", img: sashimi.url },
 ];
 
 function Cucina() {
@@ -330,6 +333,42 @@ function Footer() {
   );
 }
 
+function CookieBanner() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem("la-deriva-cookies-accepted")) {
+      setVisible(true);
+    }
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-[100] flex flex-col items-center justify-between gap-4 border-t border-white/10 bg-[color:var(--ink)] px-6 py-5 text-sm text-muted-foreground md:flex-row md:px-10">
+      <p className="max-w-2xl leading-relaxed">
+        Questo sito usa cookie tecnici necessari al funzionamento.{" "}
+        <a href="/privacy-policy" className="underline hover:text-primary">
+          Privacy Policy
+        </a>{" "}
+        —{" "}
+        <a href="/cookie-policy" className="underline hover:text-primary">
+          Cookie Policy
+        </a>
+      </p>
+      <button
+        onClick={() => {
+          localStorage.setItem("la-deriva-cookies-accepted", "true");
+          setVisible(false);
+        }}
+        className="shrink-0 bg-[color:var(--terracotta)] px-6 py-2.5 text-xs uppercase tracking-[0.25em] text-primary hover:bg-[color:var(--terracotta)]/85 transition"
+      >
+        Accetto
+      </button>
+    </div>
+  );
+}
+
 function Index() {
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -340,6 +379,7 @@ function Index() {
       <Orari />
       <Dove />
       <Footer />
+      <CookieBanner />
     </main>
   );
 }

@@ -90,6 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Il sapore autentico del mare ormeggia ad Arezzo. Cucina essenziale, cantina di vini naturali.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "it_IT" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -109,7 +110,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "icon",
-        href: "/__l5e/assets-v1/8411f109-4d7e-4d59-acd6-3847f67c3d7f/logo-la-deriva.jpg",
+        href: "/images/logo-la-deriva.jpg",
         type: "image/jpeg",
       },
     ],
@@ -123,7 +124,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="it">
       <head>
         <HeadContent />
       </head>
