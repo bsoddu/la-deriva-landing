@@ -96,7 +96,7 @@ function Hero() {
         </h1>
         <p className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
           Cucina di mare essenziale e stagionale. Cantina di vini naturali.
-          Una sala a volta in un vicolo di pietra del centro storico.
+          Una sala avvolta in un vicolo di pietra del centro storico.
         </p>
         <div className="mt-10 flex flex-wrap items-center gap-5">
           <a
